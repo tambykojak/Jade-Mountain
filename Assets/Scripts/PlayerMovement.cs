@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-            
+        
     }
 
     private void Update()
@@ -44,14 +44,25 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyForce()
     {
-        float x = Mathf.Cos(transform.rotation.z * Mathf.PI / 180) * boosterForce;
-        float y = Mathf.Sin(transform.rotation.z * Mathf.PI / 180) * boosterForce;
+ 
+        float angle = transform.rotation.eulerAngles.z % 360;
+        if (angle > 0)
+        {
+            angle = 360 - angle;
+        } else
+        {
+            angle *= -1;
+        }
 
-        rb.AddForce(new Vector2(x, y));
+        angle += 90;
+        Debug.Log(angle);
+        float x = Mathf.Cos(angle * Mathf.PI / 180) * boosterForce;
+        float y = Mathf.Sin(angle * Mathf.PI / 180) * boosterForce;
+        rb.AddForce(new Vector2(-x, y));
     }
 
     public void OnDrawGizmos()
     {
-Gizmos.Draw
+
     }
 }
