@@ -32,7 +32,7 @@ public class Timer : MonoBehaviour
         stopwatch.Start();
     }
 
-    void ResetWatch()
+    public void ResetWatch()
     {
         stopwatch.Reset();
         clockText.text = "00:00";

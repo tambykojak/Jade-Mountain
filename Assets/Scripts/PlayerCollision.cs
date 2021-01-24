@@ -46,6 +46,8 @@ public class PlayerCollision : MonoBehaviour
         transform.position = spawnLocation.position;
         transform.rotation = spawnLocation.rotation;
         playerSprite.enabled = true;
+
+        GameObject.Find("Stop Watch").GetComponent<Timer>().ResetWatch();
     }
 
     public void NextLevel()
