@@ -10,10 +10,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float boosterForce = 3f;
     [SerializeField] private float rotationSpeed = 30f;
     [SerializeField] private float fuelConsumptionPerSecond = 10f;
-    
+    [SerializeField] private GameObject boosterFlame;
+
     private bool isBoosterOn = false;
     private float rotationDirection = 0f;
     private Fuel fuel;
+    private bool canRotate = false;
 
     void Start()
     {
@@ -23,6 +25,9 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         ProcessInput();
+
+        if (isBoosterOn) boosterFlame.SetActive(true);
+        else boosterFlame.SetActive(false);
     }
 
     private void ProcessInput()
@@ -35,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (rotationDirection != 0) Rotate();
+        if (rotationDirection != 0 && canRotate) Rotate();
         if (isBoosterOn && CanBoost())
         {
             ApplyForce();
@@ -53,6 +58,16 @@ public class PlayerMovement : MonoBehaviour
     {
         float rotationAmount = -rotationDirection * rotationSpeed * Time.fixedDeltaTime;
         transform.Rotate(new Vector3(0, 0, rotationAmount));
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Platforms")) canRotate = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Platforms")) canRotate = false;
     }
 
     private void ApplyForce()
