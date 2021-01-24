@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        fuel = GetComponent<Fuel>();    
+        fuel = GetComponent<Fuel>();
     }
 
     private void Update()
@@ -45,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space)) isBoosterOn = true;
         else isBoosterOn = false;
         rotationDirection = Input.GetAxisRaw("Horizontal");
-
     }
 
     public void FixedUpdate()

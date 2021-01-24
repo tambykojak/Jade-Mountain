@@ -25,6 +25,11 @@ public class Fuel : MonoBehaviour
         InvalidateFuelBar();
     }
 
+    public void ResetFuel()
+    {
+        SetFuel(100f);
+    }
+
     public void ConsumeFuel(float fuelToConsume)
     {
         SetFuel(currentFuel - fuelToConsume);

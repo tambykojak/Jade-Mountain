@@ -9,6 +9,8 @@ public class PlayerCollision : MonoBehaviour
     [SerializeField] private float safeDegrees = 8f;
     [SerializeField] private Vector2 safeMaxVelocity = new Vector2(1.5f, 2f);
     [SerializeField] private AudioSource crashAudioSource;
+    [SerializeField] private Transform spawnLocation;
+    [SerializeField] private SpriteRenderer playerSprite;
 
     private Vector2 lastVelocity;
 
@@ -24,9 +26,23 @@ public class PlayerCollision : MonoBehaviour
             if (!IsAngleSafeForLanding() || !IsSpeedSafeForLanding())
             {
                 crashAudioSource.Play();
-                Destroy(gameObject);
+                rb.velocity = new Vector2(0, 0);
+                lastVelocity = rb.velocity;
+                rb.bodyType = RigidbodyType2D.Static;
+                playerSprite.enabled = false;
+                StartCoroutine(Respawn());
             }
         }
+    }
+
+    private IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(2);
+        GetComponent<Fuel>().ResetFuel();
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        transform.position = spawnLocation.position;
+        transform.rotation = spawnLocation.rotation;
+        playerSprite.enabled = true;
     }
 
     private bool IsAngleSafeForLanding()

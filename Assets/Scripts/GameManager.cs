@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject respawnPoint;
+
     private int currentLevel = 1;
     CameraController camController;
 
     void Start()
     {
         camController = GameObject.Find("Main Camera").GetComponent<CameraController>();
+    }
+
+    public void Respawn()
+    {
+        Instantiate(playerPrefab, respawnPoint.transform.position, Quaternion.identity, GameObject.Find("Scene").transform);
     }
 
     public void moveSceneToLevel(int level)
