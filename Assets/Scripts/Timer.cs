@@ -24,6 +24,7 @@ public class Timer : MonoBehaviour
         string message = string.Format("{0:D2}:{1:D2}", ts.Seconds, ts.Milliseconds);
         UnityEngine.Debug.Log(message);
         clockText.text = message;
+
     }
 
     void StartCounting()

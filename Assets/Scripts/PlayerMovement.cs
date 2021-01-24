@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
             rotationDirection = 0;
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) && sprite.enabled)
+        if ((Input.GetKeyUp(KeyCode.Space) || !Input.GetKey(KeyCode.Space)) && sprite.enabled)
         {
             hasLetGoSinceLastDeath = true;
         }
