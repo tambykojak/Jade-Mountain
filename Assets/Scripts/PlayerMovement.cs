@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space)) isBoosterOn = true;
         else isBoosterOn = false;
         rotationDirection = Input.GetAxisRaw("Horizontal");
+
     }
 
     public void FixedUpdate()
@@ -55,7 +56,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         angle += 90;
-        Debug.Log(angle);
         float x = Mathf.Cos(angle * Mathf.PI / 180) * boosterForce;
         float y = Mathf.Sin(angle * Mathf.PI / 180) * boosterForce;
         rb.AddForce(new Vector2(-x, y));
