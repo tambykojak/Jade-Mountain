@@ -20,6 +20,6 @@ public class GameManager : MonoBehaviour
 
     public void nextLevel()
     {
-        moveSceneToLevel(currentLevel + 1);
+        moveSceneToLevel(currentLevel - 1);
     }
 }
