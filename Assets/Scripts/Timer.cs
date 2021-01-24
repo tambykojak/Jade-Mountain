@@ -20,7 +20,7 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(stopwatch.Elapsed.ToString());
+        UnityEngine.Debug.Log(stopwatch.Elapsed.ToString());
         clockText.text = stopwatch.Elapsed.ToString();
     }
 
