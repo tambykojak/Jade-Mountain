@@ -5,9 +5,6 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
 
-    Vector3 targetPos;
-    bool movingCamera = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -17,16 +14,6 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (movingCamera == true)
-        {
-            //transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime / 0.5f);
-        }
-
-        if (transform.position.x == targetPos.x)
-        {
-            movingCamera = false;
-        }
 
     }
 
@@ -49,9 +36,8 @@ public class CameraController : MonoBehaviour
 
     public void moveTo(int level)
     {
-        var newCamXPos = Camera.main.ViewportToWorldPoint(new Vector2(0.5f + level - 1, .5f));
-        targetPos = newCamXPos;
-        StartCoroutine(TransitionToNewLevel(newCamXPos));
+        var newCamPos = Camera.main.ViewportToWorldPoint(new Vector2(0.5f + level - 1, .5f));
+        StartCoroutine(TransitionToNewLevel(newCamPos));
     }
 
 }
