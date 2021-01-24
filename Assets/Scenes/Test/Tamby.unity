@@ -162,7 +162,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35828731}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.4422388, y: -0.020777453, z: 35.126305}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 84846760}
@@ -327,7 +327,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84846759}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6.48, y: -2.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 35828733}
@@ -561,6 +561,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rt: {fileID: 136483479}
   scrollSpeed: -15
+--- !u!212 &239744154 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6826314901273541706, guid: 168e47110cfa7f243b44bfe919a8a1fc, type: 3}
+  m_PrefabInstance: {fileID: 6826314901119580321}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &332561440
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,13 +603,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332561440}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6442724, y: -1.7178574, z: -347.75687}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 23.193804, y: -61.842857, z: -15759.245}
+  m_LocalScale: {x: 36, y: 36, z: 36}
   m_Children:
   - {fileID: 50092780}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 684643522}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &506259743
 GameObject:
@@ -1241,6 +1246,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 881921393}
+  - {fileID: 332561442}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1685,7 +1691,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb6eb6e642a6ce49b16023f8340cb55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelComplete: {fileID: 519420034}
 --- !u!1 &1753460874
 GameObject:
   m_ObjectHideFlags: 0
@@ -2091,6 +2096,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 1119614803}
     m_Modifications:
     - target: {fileID: 824678055, guid: 168e47110cfa7f243b44bfe919a8a1fc, type: 3}
+      propertyPath: playerSprite
+      value: 
+      objectReference: {fileID: 239744154}
+    - target: {fileID: 824678055, guid: 168e47110cfa7f243b44bfe919a8a1fc, type: 3}
+      propertyPath: levelComplete
+      value: 
+      objectReference: {fileID: 519420034}
+    - target: {fileID: 824678055, guid: 168e47110cfa7f243b44bfe919a8a1fc, type: 3}
+      propertyPath: spawnLocation
+      value: 
+      objectReference: {fileID: 84846760}
+    - target: {fileID: 824678055, guid: 168e47110cfa7f243b44bfe919a8a1fc, type: 3}
       propertyPath: crashAudioSource
       value: 
       objectReference: {fileID: 519420033}
@@ -2142,6 +2159,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6826314900329442820, guid: 168e47110cfa7f243b44bfe919a8a1fc, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 239744154}
     - target: {fileID: 6826314900329442820, guid: 168e47110cfa7f243b44bfe919a8a1fc, type: 3}
       propertyPath: audioSource
       value: 
