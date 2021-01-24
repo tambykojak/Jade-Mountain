@@ -11,8 +11,10 @@ public class PlayerCollision : MonoBehaviour
     [SerializeField] private AudioSource crashAudioSource;
     [SerializeField] private Transform spawnLocation;
     [SerializeField] private SpriteRenderer playerSprite;
+    [SerializeField] private AudioSource levelComplete;
 
     private Vector2 lastVelocity;
+    private IEnumerator nextLevelEnumerator;
 
     public void Update()
     {
@@ -30,6 +32,7 @@ public class PlayerCollision : MonoBehaviour
                 lastVelocity = rb.velocity;
                 rb.bodyType = RigidbodyType2D.Static;
                 playerSprite.enabled = false;
+                GetComponent<PlayerMovement>().hasLetGoSinceLastDeath = false;
                 StartCoroutine(Respawn());
             }
         }
@@ -37,12 +40,18 @@ public class PlayerCollision : MonoBehaviour
 
     private IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(.75f);
         GetComponent<Fuel>().ResetFuel();
         rb.bodyType = RigidbodyType2D.Dynamic;
         transform.position = spawnLocation.position;
         transform.rotation = spawnLocation.rotation;
         playerSprite.enabled = true;
+    }
+
+    public void NextLevel()
+    {
+        levelComplete.Play();
+        GameObject.Find("Game Manager").GetComponent<GameManager>().nextLevel();
     }
 
     private bool IsAngleSafeForLanding()

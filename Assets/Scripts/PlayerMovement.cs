@@ -13,11 +13,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float fuelConsumptionPerSecond = 10f;
     [SerializeField] private GameObject boosterFlame;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private SpriteRenderer sprite;
 
     private bool isBoosterOn = false;
     private float rotationDirection = 0f;
     private Fuel fuel;
     private bool canRotate = false;
+    public bool hasLetGoSinceLastDeath = true;
 
     void Start()
     {
@@ -26,10 +28,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        ProcessInput();
-
-        if (isBoosterOn && CanBoost())
+        if (hasLetGoSinceLastDeath) ProcessInput();
+        else
         {
+            isBoosterOn = false;
+            rotationDirection = 0;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space) && sprite.enabled)
+        {
+            hasLetGoSinceLastDeath = true;
+        }
+
+        if (isBoosterOn && CanBoost() && sprite.enabled)
+        {
+            
             boosterFlame.SetActive(true);
             audioSource.enabled = true;
         }
@@ -42,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void ProcessInput()
     {
+
+
         if (Input.GetKey(KeyCode.Space)) isBoosterOn = true;
         else isBoosterOn = false;
         rotationDirection = Input.GetAxisRaw("Horizontal");
