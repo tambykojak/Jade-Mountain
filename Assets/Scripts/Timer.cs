@@ -20,8 +20,10 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UnityEngine.Debug.Log(stopwatch.Elapsed.ToString());
-        clockText.text = stopwatch.Elapsed.ToString();
+        TimeSpan ts = stopwatch.Elapsed;
+        string message = string.Format("{0:D2}:{1:D2}", ts.Seconds, ts.Milliseconds);
+        UnityEngine.Debug.Log(message);
+        clockText.text = message;
     }
 
     void StartCounting()
@@ -32,6 +34,7 @@ public class Timer : MonoBehaviour
     void ResetWatch()
     {
         stopwatch.Reset();
+        clockText.text = "00:00";
     }
 
 }
