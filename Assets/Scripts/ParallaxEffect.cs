@@ -21,6 +21,6 @@ public class ParallaxEffect : MonoBehaviour
         float newX = rt.anchoredPosition.x + scrollSpeed * Time.deltaTime;
         if (rt.anchoredPosition.x > textureWidth) newX = rt.anchoredPosition.x - textureWidth;
         if (rt.anchoredPosition.x < -textureWidth) newX = rt.anchoredPosition.x + textureWidth;
-        rt.anchoredPosition = new Vector2(newX, rt.position.y);
+        rt.anchoredPosition = new Vector2(newX, rt.anchoredPosition.y);
     }
 }

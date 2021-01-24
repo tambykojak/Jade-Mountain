@@ -4,18 +4,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    [SerializeField] private int currentLevel;
+    
+    private int lastLevel;
 
     IEnumerator TransitionToNewLevel(Vector3 newPos)
     {
@@ -34,10 +25,19 @@ public class CameraController : MonoBehaviour
         yield return null;
     }
 
-    public void moveTo(int level)
+    public void Update()
     {
-        var newCamPos = Camera.main.ViewportToWorldPoint(new Vector2(0.5f + level - 1, .5f));
-        StartCoroutine(TransitionToNewLevel(newCamPos));
+        if (lastLevel != currentLevel)
+        {
+            moveTo(currentLevel);
+        }
     }
 
+    public void moveTo(int level)
+    {
+        lastLevel = level;
+        currentLevel = level;
+        var newCamPos = Camera.main.ViewportToWorldPoint(new Vector2(0.25f + level - 1, .5f));
+        StartCoroutine(TransitionToNewLevel(newCamPos));
+    }
 }

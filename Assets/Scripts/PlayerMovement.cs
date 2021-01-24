@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rotationSpeed = 30f;
     [SerializeField] private float fuelConsumptionPerSecond = 10f;
     [SerializeField] private GameObject boosterFlame;
+    [SerializeField] private AudioSource audioSource;
 
     private bool isBoosterOn = false;
     private float rotationDirection = 0f;
@@ -26,8 +28,16 @@ public class PlayerMovement : MonoBehaviour
     {
         ProcessInput();
 
-        if (isBoosterOn) boosterFlame.SetActive(true);
-        else boosterFlame.SetActive(false);
+        if (isBoosterOn && CanBoost())
+        {
+            boosterFlame.SetActive(true);
+            audioSource.enabled = true;
+        }
+        else
+        {
+            boosterFlame.SetActive(false);
+            audioSource.enabled = false;
+        }
     }
 
     private void ProcessInput()
